@@ -357,6 +357,19 @@ void effect_bouncingball(){
   }  
 }
 
+//firework effect
+void effect_fireworks(){
+  for(int i =0; i <1000; i++){
+    int xpos = rand()%8;
+    int ypos = rand()%8;
+    int zpos = rand()%8;
+    int radius = rand()%4;
+
+    setvowel(xpos, y pos, 0);
+    for(int hieght = 0; hieght < zpos; hieght++) shift(AXIS_Z);
+    for(int r = 1; r < radius; r++) sphere_hollow(xpos, ypos, zpos, r);
+  }
+}
 
 // ==========================================================================================
 //   Draw functions

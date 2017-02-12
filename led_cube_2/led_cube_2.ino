@@ -368,13 +368,13 @@ void effect_fireworks(){
     setvowel(xpos, y pos, 0);
     for(int hieght = 0; hieght < zpos; hieght++) shift(AXIS_Z);
     for(int r = 1; r < radius; r++) sphere_hollow(xpos, ypos, zpos, r);
+    for(int maxHieght = zpos + radius; hieght > 0; maxHight --) shift(AXIS_Z);
   }
 }
 
 // ==========================================================================================
 //   Draw functions
 // ==========================================================================================
-
 
 // Set a single voxel to ON
 void setvoxel(int x, int y, int z)

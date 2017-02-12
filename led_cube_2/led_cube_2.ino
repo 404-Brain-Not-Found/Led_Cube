@@ -314,17 +314,49 @@ void effect_planboing (int plane, int speed)
 }
 
 //Draw sound waves
-void effect_songWave():{
-  for (i=0; i < 1000;i++){
-    int soundLevel = analogRead();
+void effect_songWave(){
+  for (int i=0; i < 1000; i++){
+    int soundLevel = analogRead(5);
   
-    level = map(soundLevel, 0, 1023, 0, 8);
+    int level = map(soundLevel, 0, 1023, 0, 8);
   
     box_filled(0, 0, 0, 0, 0, level);
     
     shift(AXIS_X, 1);
   }
 }
+//Draw bouncing ball
+void effect_bouncingball(){
+  int xpos = rand()%8;
+  int ypos = rand()%8;
+  int zpos = rand()%8;
+  int xdir = random(-2,2);
+  int ydir = random(-2, 2);
+  int zdir = random(-2, 2);
+  if(xdir == 0) xdir = 1;
+  if(ydir == 0) ydir = 1;
+  if(zdir == 0) zdir = 1;
+  
+
+  for(int i= 0; i <1000; i++){
+    sphere_filled(xpos, ypos, zpos, 3);
+
+    if( xpos > 0 and xpos < 8 and ypos > 0 and ypos < 8 and zpos > 0 and zpos){
+      xpos += xdir;
+      ypos += ydir;
+      zpos += zdir;
+    }
+    else if( not (xpos > 0 or xpos < 8) and ypos > 0 and ypos < 8 and zpos > 0 and zpos) xdir *= -1;
+    else if( not (ypos > 0 or ypos < 8) and xpos > 0 and xpos < 8 and zpos > 0 and zpos) ydir *= -1;
+    else if( not (zpos > 0 or zpos < 8) and ypos > 0 and ypos < 8 and xpos > 0 and xpos) zdir *= -1;
+    else if(xpos <= 0 and xpos >= 8 and ypos <= 0 or ypos >= 8 and zpos <= 0 and zpos){
+      xdir *= -1;
+      ydir *= -1;
+      zdir *= -1;
+    } 
+  }  
+}
+
 
 // ==========================================================================================
 //   Draw functions
@@ -799,6 +831,24 @@ void shift (char axis, int direction)
         clrvoxel(i,y,x);
     }
   }
+}
+
+//Draw a sphere
+void sphere_filled(int centerX, int centerY, int centerZ, int radius){
+  for(int i = -radius; i <= radius; i++){
+    int width = abs(pow(pow(radius,2)-pow(i - centerX, 2), .5) + centerY);
+    int height = abs(pow(pow(radius, 2)- pow(i - centerX,2) - pow(width - centerY, 2), .5) + centerZ);
+    box_filled(centerX + i, centerY - width, centerZ - height, centerX + i, centerY + width, centerZ + height);
+  }
+}
+
+void sphere_hollow( int centerX, int centerY, int centerZ, int radius){
+  for(int i = -radius; i <= radius; i++){
+    int width = abs(pow(pow(radius,2)-pow(i - centerX, 2), .5) + centerY);
+    int height = abs(pow(pow(radius, 2) - pow(i - centerX,2) - pow(width - centerY, 2), .5) + centerZ);
+    box_wireframe(centerX + i, centerY - width, centerZ - height, centerX + i, centerY + width, centerZ + height);
+  }
+  
 }
 
 

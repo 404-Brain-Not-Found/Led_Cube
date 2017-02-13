@@ -1,6 +1,11 @@
 bouncing ball - see newEffects branch
+
 fireworks - see newEffects branch
+
 text
+
 growing wire box
+
 pick effect with a computer
+
 Tesseract

@@ -1,11 +1,6 @@
 bouncing ball - see newEffects branch
 fireworks - see newEffects branch
-text-UML J.R.
+text
 growing wire box
 pick effect with a computer
 Tesseract
-Test test Test 
-Clock Time 
-Vains
-Lightning 
-bottom row/up
